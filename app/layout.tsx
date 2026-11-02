@@ -3,6 +3,8 @@ import { Geist, Geist_Mono } from "next/font/google";
 import NavPill from "./components/NavPill";
 import "./globals.css";
 
+//update contents
+
 const geistSans = Geist({
   variable: "--font-geist-sans",
   subsets: ["latin"],
