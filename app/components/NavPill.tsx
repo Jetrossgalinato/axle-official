@@ -16,12 +16,12 @@ export default function NavPill() {
   return (
     <nav
       aria-label="Primary"
-      className="sticky top-0 z-50 flex justify-center px-4 pt-5 pb-3"
+      className="sticky top-0 z-50 flex justify-center px-4 pt-12 pb-3"
     >
       <div
         role="tablist"
         aria-label="Sections"
-        className="relative grid grid-cols-2 rounded-full border border-black/[.08] bg-white/80 p-1 shadow-sm backdrop-blur-md dark:border-white/[.12] dark:bg-zinc-900/80"
+        className="relative grid grid-cols-2 rounded-full border border-white/40 bg-white/40 p-1 shadow-sm backdrop-blur-xl dark:border-white/10 dark:bg-white/10"
       >
         <span
           aria-hidden
