@@ -9,6 +9,9 @@ const OPTIONS: { id: NavOption; label: string }[] = [
   { id: "info", label: "Info" },
 ];
 
+const GLIDE =
+  "duration-[380ms] ease-[cubic-bezier(0.22,1,0.36,1)]";
+
 export default function NavPill() {
   const [active, setActive] = useState<NavOption>("work");
   const activeIndex = OPTIONS.findIndex((option) => option.id === active);
@@ -18,7 +21,6 @@ export default function NavPill() {
     info: null,
   });
   const [indicator, setIndicator] = useState({ left: 0, width: 0 });
-  const [spread, setSpread] = useState(false);
 
   useLayoutEffect(() => {
     const wrap = wrapRef.current;
@@ -28,23 +30,10 @@ export default function NavPill() {
     const wrapRect = wrap.getBoundingClientRect();
     const labelRect = label.getBoundingClientRect();
 
-    setSpread(false);
     setIndicator({
       left: labelRect.left - wrapRect.left,
       width: labelRect.width,
     });
-
-    let innerFrame = 0;
-    const outerFrame = requestAnimationFrame(() => {
-      innerFrame = requestAnimationFrame(() => {
-        setSpread(true);
-      });
-    });
-
-    return () => {
-      cancelAnimationFrame(outerFrame);
-      cancelAnimationFrame(innerFrame);
-    };
   }, [active]);
 
   return (
@@ -60,7 +49,7 @@ export default function NavPill() {
         >
           <span
             aria-hidden
-            className="pointer-events-none absolute top-1 bottom-1 left-1 w-[calc(50%-4px)] rounded-full bg-white transition-transform duration-300 ease-out"
+            className={`pointer-events-none absolute top-1 bottom-1 left-1 w-[calc(50%-4px)] rounded-full bg-white transition-transform ${GLIDE}`}
             style={{ transform: `translateX(${activeIndex * 100}%)` }}
           />
 
@@ -74,7 +63,7 @@ export default function NavPill() {
                 role="tab"
                 aria-selected={isActive}
                 onClick={() => setActive(option.id)}
-                className={`relative z-10 flex min-w-20 cursor-pointer items-center justify-center rounded-full px-5 py-2 text-sm font-medium transition-colors duration-300 ease-out ${
+                className={`relative z-10 flex min-w-20 cursor-pointer items-center justify-center rounded-full px-5 py-2 text-sm font-medium transition-colors ${GLIDE} ${
                   isActive
                     ? "text-zinc-900"
                     : "text-zinc-500 hover:text-zinc-300"
@@ -94,12 +83,8 @@ export default function NavPill() {
 
         <span
           aria-hidden
-          className="pointer-events-none absolute top-full mt-2 h-[2px] origin-center rounded-full bg-white transition-transform duration-300 ease-out"
-          style={{
-            left: indicator.left,
-            width: indicator.width,
-            transform: `scaleX(${spread ? 1 : 0})`,
-          }}
+          className={`pointer-events-none absolute top-full mt-2 h-[2px] rounded-full bg-white transition-[left,width] ${GLIDE}`}
+          style={{ left: indicator.left, width: indicator.width }}
         />
       </div>
     </nav>
