@@ -18,6 +18,7 @@ export default function NavPill() {
     info: null,
   });
   const [indicator, setIndicator] = useState({ left: 0, width: 0 });
+  const [spread, setSpread] = useState(false);
 
   useLayoutEffect(() => {
     const wrap = wrapRef.current;
@@ -27,10 +28,23 @@ export default function NavPill() {
     const wrapRect = wrap.getBoundingClientRect();
     const labelRect = label.getBoundingClientRect();
 
+    setSpread(false);
     setIndicator({
       left: labelRect.left - wrapRect.left,
       width: labelRect.width,
     });
+
+    let innerFrame = 0;
+    const outerFrame = requestAnimationFrame(() => {
+      innerFrame = requestAnimationFrame(() => {
+        setSpread(true);
+      });
+    });
+
+    return () => {
+      cancelAnimationFrame(outerFrame);
+      cancelAnimationFrame(innerFrame);
+    };
   }, [active]);
 
   return (
@@ -80,8 +94,12 @@ export default function NavPill() {
 
         <span
           aria-hidden
-          className="pointer-events-none absolute top-full mt-2 h-[2px] rounded-full bg-white transition-[left,width] duration-300 ease-out"
-          style={{ left: indicator.left, width: indicator.width }}
+          className="pointer-events-none absolute top-full mt-2 h-[2px] origin-center rounded-full bg-white transition-transform duration-300 ease-out"
+          style={{
+            left: indicator.left,
+            width: indicator.width,
+            transform: `scaleX(${spread ? 1 : 0})`,
+          }}
         />
       </div>
     </nav>
