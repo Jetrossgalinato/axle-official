@@ -39,7 +39,7 @@ export default function NavPill() {
               role="tab"
               aria-selected={isActive}
               onClick={() => setActive(option.id)}
-              className={`relative z-10 min-w-20 rounded-full px-5 py-2 text-sm font-medium transition-colors duration-300 ease-out ${
+              className={`relative z-10 min-w-20 rounded-full px-5 py-2 text-sm font-medium transition-colors duration-300 ease-out cursor-pointer ${
                 isActive
                   ? "text-white dark:text-zinc-900"
                   : "text-zinc-600 hover:text-zinc-900 dark:text-zinc-400 dark:hover:text-zinc-100"
