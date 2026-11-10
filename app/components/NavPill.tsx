@@ -46,7 +46,7 @@ export default function NavPill() {
         <div
           role="tablist"
           aria-label="Sections"
-          className="relative grid grid-cols-2 rounded-full border border-white/10 bg-white/10 p-1 shadow-sm backdrop-blur-xl"
+          className="relative grid grid-cols-2 rounded-full border border-white/10 bg-white/10 p-1 shadow-md backdrop-blur-xl"
         >
           <span
             aria-hidden
