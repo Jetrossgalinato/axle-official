@@ -1,4 +1,4 @@
-// Navigation Pill Component 
+// Navigation Pill Component
 "use client";
 
 import { useLayoutEffect, useRef, useState } from "react";
@@ -10,8 +10,7 @@ const OPTIONS: { id: NavOption; label: string }[] = [
   { id: "info", label: "Info" },
 ];
 
-const GLIDE =
-  "duration-[380ms] ease-[cubic-bezier(0.22,1,0.36,1)]";
+const GLIDE = "duration-[380ms] ease-[cubic-bezier(0.22,1,0.36,1)]";
 
 export default function NavPill() {
   const [active, setActive] = useState<NavOption>("work");
@@ -40,13 +39,16 @@ export default function NavPill() {
   return (
     <nav
       aria-label="Primary"
-      className="sticky top-0 z-50 flex justify-center px-4 pt-12 pb-3"
+      className="pointer-events-none fixed inset-x-0 top-0 z-50 flex justify-center px-4 pt-12 pb-3"
     >
-      <div ref={wrapRef} className="relative inline-flex flex-col items-stretch">
+      <div
+        ref={wrapRef}
+        className="pointer-events-auto relative inline-flex flex-col items-stretch"
+      >
         <div
           role="tablist"
           aria-label="Sections"
-          className="relative grid grid-cols-2 rounded-full border border-white/10 bg-white/10 p-1 shadow-sm backdrop-blur-xl"
+          className="relative grid grid-cols-2 rounded-full border border-white/10 bg-white/10 p-1 shadow-md backdrop-blur-xl"
         >
           <span
             aria-hidden
