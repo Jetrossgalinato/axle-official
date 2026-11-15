@@ -1,3 +1,5 @@
+//this is the AboutSection
+
 import type { ReactNode } from "react";
 
 interface AboutSectionProps {
