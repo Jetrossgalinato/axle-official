@@ -1,4 +1,4 @@
-// this is the hero section 
+// this is the hero section, this needs to be adjusted
 import type { ReactNode } from "react";
 
 interface HeroSectionProps {
